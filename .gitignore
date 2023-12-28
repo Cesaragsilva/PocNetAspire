@@ -11,3 +11,8 @@
 /NetAspireApp/NetAspireApp.ServiceDefaults/obj
 /NetAspireApp/NetAspireApp.Web/bin/Debug/net8.0
 /NetAspireApp/NetAspireApp.Web/obj
+/NetAspireApp/NetAspireApp.ApiService/bin/Release/net8.0
+/NetAspireApp/.vs/ProjectEvaluation
+/NetAspireApp/NetAspireApp.AppHost/bin/Release/net8.0
+/NetAspireApp/NetAspireApp.Web/bin/Release/net8.0
+/NetAspireApp/NetAspireApp.ServiceDefaults/bin/Release/net8.0

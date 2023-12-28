@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.RabbitMQ.Client" Version="8.0.0-preview.2.23619.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NetAspireApp.ServiceDefaults\NetAspireApp.ServiceDefaults.csproj" />
   </ItemGroup>
 
