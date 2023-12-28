@@ -1,0 +1,13 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/NetAspireApp/.vs/NetAspireApp
+/NetAspireApp/NetAspireApp.ApiService/bin/Debug/net8.0
+/NetAspireApp/NetAspireApp.ApiService/obj
+/NetAspireApp/NetAspireApp.AppHost/bin/Debug/net8.0
+/NetAspireApp/NetAspireApp.AppHost/obj
+/NetAspireApp/NetAspireApp.ServiceDefaults/bin/Debug/net8.0
+/NetAspireApp/NetAspireApp.ServiceDefaults/obj
+/NetAspireApp/NetAspireApp.Web/bin/Debug/net8.0
+/NetAspireApp/NetAspireApp.Web/obj
