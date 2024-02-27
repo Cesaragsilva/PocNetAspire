@@ -1,3 +1,4 @@
+using NetAspireApp.ApiService;
 using RabbitMQ.Client;
 using System.Text.Json;
 
@@ -10,6 +11,8 @@ builder.AddRabbitMQ("rabbit_messaging");
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
+
+builder.Services.AddHttpClient<ExternalApiClient>(client => client.BaseAddress = new("https://external-api"));
 
 var app = builder.Build();
 
@@ -43,6 +46,20 @@ app.MapGet("/post-message", (IConnection connection) =>
 
     return "Message sent to RabbitMQ Queue";
 });
+
+app.MapGet("/send-hit", async (ExternalApiClient externalApi) =>
+{
+    try
+    {
+        await externalApi.SendHit("Text received from .NET Aspire ApiService");
+
+        return "A hit was sent to external API";
+    }
+    catch (Exception ex) {
+        return $"An error occurred during request external API: {ex?.Message}";
+    }
+});
+
 
 app.MapDefaultEndpoints();
 
