@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
 
-builder.AddRabbitMQ("rabbit_messaging");
+builder.AddRabbitMQ("rabbitmessage");
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
@@ -39,12 +39,17 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapGet("/post-message", (IConnection connection) =>
 {
-    var queueName = "test-queue";
-    using var channel = connection.CreateModel();
-    channel.QueueDeclare(queueName, exclusive: false, durable: true);
-    channel.BasicPublish(exchange: "", queueName, null, body: JsonSerializer.SerializeToUtf8Bytes(new { Title = "Book01", Description = "Description of Book01" }));
+    try {
+        var queueName = "test-queue";
+        using var channel = connection.CreateModel();
+        channel.QueueDeclare(queueName, exclusive: false, durable: true);
+        channel.BasicPublish(exchange: "", queueName, null, body: JsonSerializer.SerializeToUtf8Bytes(new { Title = "Book01", Description = "Description of Book01" }));
 
-    return "Message sent to RabbitMQ Queue";
+        return $"A Message was sent to RabbitMQ Queue";
+    }
+    catch(Exception ex){
+        return $"An error occurred to send a message to RabbitMQ - {ex.Message}";
+    }
 });
 
 app.MapGet("/send-hit", async (ExternalApiClient externalApi) =>
@@ -52,7 +57,6 @@ app.MapGet("/send-hit", async (ExternalApiClient externalApi) =>
     try
     {
         await externalApi.SendHit("Text received from .NET Aspire ApiService");
-
         return "A hit was sent to external API";
     }
     catch (Exception ex) {

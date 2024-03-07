@@ -1,6 +1,6 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var rabbit = builder.AddRabbitMQContainer("rabbit_messaging", password: "passwordless");
+var rabbit = builder.AddRabbitMQContainer("rabbitmessage", password: "passwordless");
 
 var apiservice = builder.AddProject<Projects.NetAspireApp_ApiService>("apiservice")
     .WithReference(rabbit)
